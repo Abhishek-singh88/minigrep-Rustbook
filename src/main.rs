@@ -1,11 +1,16 @@
 use std::env;
+use std::fs;
+use dotenv::dotenv;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    dotenv().ok(); // Load .env file
 
-    let query = &args[1];
-    let file_path = &args[2];
+    let file_path = env::var("file_path").expect("FILE_PATH not set in .env");
 
-    println!("Searching for {query}");
     println!("In file {file_path}");
+
+    let contents = fs::read_to_string(&file_path)
+        .expect("Should have been able to read the file");
+
+    println!("With text:\n{contents}");
 }
