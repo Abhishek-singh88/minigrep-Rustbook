@@ -3,7 +3,7 @@ use std::fs;
 use dotenv::dotenv;
 
 fn main() {
-    dotenv().ok(); // Load .env file
+    dotenv().ok();
 
     let file_path = env::var("file_path").expect("FILE_PATH not set in .env");
 
